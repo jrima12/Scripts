@@ -3,32 +3,29 @@ import os
 import json
 import sys
 
-API_KEY = os.getenv("NASA_API")
-
-def make_pretty(json_object):
-    return json_object
+url = "https://www.boredapi.com/api/"
 
 def help():
     #returns command options
     help_text = f'''
-    Welcome to the NASA API help page.
+    Welcome to the SpaceX API help page.
     Add arguments to commands to get data. You can include as many arguments as you want
     here are a list of arguments you can include:
     "help" - will return this same text
-    "Asteroids" - returns information about asteroids near earth
+    "Activity" - return basic activity
     '''
     return help_text
 
-def Asteroids(): 
-    url = f"https://api.nasa.gov/neo/rest/v1/neo/browse?api_key={API_KEY}"
-    response =  requests.get(url)
+def Activity(): 
+    endpoint = "activity/"
+    response =  requests.get(url+endpoint, verify=False)
     data = json.loads(response.text)
-    return make_pretty(data)
-    #TODO: Make data pretty
+    return data
+    #TODO: add more endpoint options
 
 argument_dict = {
     "help":help(),
-    "Asteroids":Asteroids(),
+    "Activity":Activity(),
 }
 
 if len(sys.argv) == 1:
