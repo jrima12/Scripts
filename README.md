@@ -42,5 +42,3 @@ Generate a wordlist based off of select parameters, including custom words, 1337
 
 ### To USe
 `python3 wordlist.py` for a list of commands
-
-check the readme in each directory for more info
